@@ -95,7 +95,15 @@ def getCMAP(cmap='batlow'):
               'turku','tokyo','lapaz','roma','oleron','acton',\
               'batlow','nuuk','bamako','hawaii','buda','imola']
     
-    assert cmap in cnames,'cmap must be in {}'.format(cnames)
+    cnames_r = [cn+'_r' for cn in cnames]
+     
+    assert cmap in cnames,'cmap must be in {} or {}'.format(cnames,cnames_r)
+    
+    # If reversed is asked
+    rev = False
+    if cmap in cnames_r:
+        cmap = cmap[:-2]
+        rev = True
     
     # Read colourmap file
     fid = join(dirname(__file__),'COLOURS','{}.txt'.format(cmap))
@@ -103,6 +111,10 @@ def getCMAP(cmap='batlow'):
 
     # Create colormap object 
     cm = LinearSegmentedColormap.from_list(cmap,cm_data)
+
+    # Reversed if asked
+    if rev:
+        cm = cm.reversed()
 
     # All done
     return cm 
