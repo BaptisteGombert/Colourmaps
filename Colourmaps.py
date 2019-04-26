@@ -96,8 +96,9 @@ def getCMAP(cmap='batlow'):
               'batlow','nuuk','bamako','hawaii','buda','imola']
     
     cnames_r = [cn+'_r' for cn in cnames]
+    cnames_all = cnames+cnames_r
      
-    assert cmap in cnames,'cmap must be in {} or {}'.format(cnames,cnames_r)
+    assert cmap in cnames_all,'cmap must be in {} or {}'.format(cnames,cnames_r)
     
     # If reversed is asked
     rev = False
