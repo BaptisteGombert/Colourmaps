@@ -201,7 +201,7 @@ def compareCMAPs(category=['S','D']):
 # ----------------------------------------------------------------------
 def compareMatplotlibCMAPs(category=['P','S','D','M','Q']):    
     '''
-    Shamelessy stolent from https://matplotlib.org/examples/color/colormaps_reference.html
+    Shamelessy stolen from https://matplotlib.org/examples/color/colormaps_reference.html
     '''
 
     # Get Pyplot already implemented colourmaps
