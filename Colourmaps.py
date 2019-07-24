@@ -8,6 +8,9 @@ All colourmaps are created by Fabio Crameri
 I am in England as I write this so there is a 'u' in
 every 'colour' word, deal with it.
 
+TODO (July 2019)
+	- Add cyclic colourmaps
+
 '''
 # Externals
 import os
