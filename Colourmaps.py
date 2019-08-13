@@ -35,7 +35,8 @@ def getCMAPnames():
     cnames = ['devon','davos','oslo','bilbao','lajolla','broc',\
               'cork','vik','grayC','lisbon','tofino','berlin',\
               'turku','tokyo','lapaz','roma','oleron','acton',\
-              'batlow','nuuk','bamako','hawaii','buda','imola']
+              'batlow','nuuk','bamako','hawaii','buda','imola',\
+              'brocO','corkO','vikO']
 
     # All done
     return cnames
@@ -67,6 +68,17 @@ def getsequentials():
     return cnames_seq
 
 # ----------------------------------------------------------------------
+def getcyclics():
+    '''
+    Return a list of only cyclics cmaps
+    '''
+
+    cnames_cyc = ['brocO','corkO','vikO']
+
+    # All done
+    return cnames_cyc
+    
+# ----------------------------------------------------------------------
 def printCMAP():
     '''
     Print to screen the cmap names
@@ -81,6 +93,9 @@ def printCMAP():
     print('broc - cork - vik - lisbon - tofino')
     print('berlin - roma - oleron')
     print('')
+    print('---- Cyclic CMAPS: ----')
+    print('brocO - corkO - vikO')
+    print('')    
 
     return
 
@@ -93,11 +108,13 @@ def getCMAP(cmap='batlow'):
     '''
     
     # Check you didn't use a wrong cmap
+    '''
     cnames = ['devon','davos','oslo','bilbao','lajolla','broc',\
               'cork','vik','grayC','lisbon','tofino','berlin',\
               'turku','tokyo','lapaz','roma','oleron','acton',\
               'batlow','nuuk','bamako','hawaii','buda','imola']
-    
+    '''
+    cnames = getCMAPnames()
     cnames_r = [cn+'_r' for cn in cnames]
     cnames_all = cnames+cnames_r
      
@@ -147,7 +164,7 @@ def plotCMAP(cmap='batlow',useviscm=True):
     return
 
 # ----------------------------------------------------------------------
-def compareCMAPs(category=['S','D']):
+def compareCMAPs(category=['S','D','C']):
     ''' 
     Make a figure showing the different colourmaps
     separated by sequentials and diverging
@@ -167,6 +184,7 @@ def compareCMAPs(category=['S','D']):
     # Get colormap names
     names_div = getdiverging()
     names_seq = getsequentials()
+    names_cyc = getcyclics()
 
     # Loop on what to plot
     for cat in category:
@@ -176,8 +194,11 @@ def compareCMAPs(category=['S','D']):
         elif cat in ['D','d','diverging']:
             title = 'Diverging colormaps'
             names = names_div
+        elif cat in ['C','c','cyclic']:
+            title = 'Cyclic colormaps'
+            names = names_cyc
         else:
-            sys.exit('category must be "S", "D", or both')
+            sys.exit('category must be "S", "D", "C", or list of tehse letters')
          
         # Create figure    
         fig, axes = plt.subplots(nrows=len(names))
